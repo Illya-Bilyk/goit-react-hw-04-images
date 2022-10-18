@@ -8,36 +8,33 @@ import {
 } from './Searchbar.styled';
 import { Formik } from 'formik';
 
-export class Searchbar extends Component {
-  handleSubmit = (values, actions) => {
-    const { onSubmit } = this.props;
+export function Searchbar({ onSubmit }) {
+  const handleSubmit = (values, actions) => {
     onSubmit(values.quary);
     actions.resetForm();
   };
 
-  render() {
-    const initialValues = {
-      quary: '',
-    };
-    return (
-      <Header>
-        <Formik initialValues={initialValues} onSubmit={this.handleSubmit}>
-          <SearchForm>
-            <FormButton type="submit">
-              <ButtonLabel>Search</ButtonLabel>
-            </FormButton>
+  const initialValues = {
+    quary: '',
+  };
+  return (
+    <Header>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+        <SearchForm>
+          <FormButton type="submit">
+            <ButtonLabel>Search</ButtonLabel>
+          </FormButton>
 
-            <Input
-              className="input"
-              type="text"
-              autoComplete="off"
-              name="quary"
-              autoFocus
-              placeholder="Search images and photos"
-            />
-          </SearchForm>
-        </Formik>
-      </Header>
-    );
-  }
+          <Input
+            className="input"
+            type="text"
+            autoComplete="off"
+            name="quary"
+            autoFocus
+            placeholder="Search images and photos"
+          />
+        </SearchForm>
+      </Formik>
+    </Header>
+  );
 }

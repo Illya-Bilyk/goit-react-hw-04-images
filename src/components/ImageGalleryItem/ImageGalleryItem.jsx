@@ -1,34 +1,24 @@
 import { Item, Card } from './ImageGalleryItem.styled';
 import { Modal } from 'components/Modal';
-import { Component } from 'react';
+import { useState } from 'react';
 
-export class GalleryItems extends Component {
-  state = {
-    modal: false,
+export function GalleryItems({ previewURL, modalUrl }) {
+  const [modal, setModal] = useState(false);
+
+  const modalToggle = () => {
+    setModal(prevModal => !prevModal);
   };
 
-  modalToggle = () => {
-    this.setState(({ modal }) => ({ modal: !modal }));
-  };
-
-  render() {
-    const { previewURL, modalUrl } = this.props;
-    const { modal } = this.state;
-    return (
-      <>
-        <Item>
-          <Card
-            src={previewURL}
-            alt="Searched photo"
-            onClick={this.modalToggle}
-          />
-        </Item>
-        {modal && (
-          <Modal onClose={this.modalToggle}>
-            <img src={modalUrl} alt="Modal large" />
-          </Modal>
-        )}
-      </>
-    );
-  }
+  return (
+    <>
+      <Item>
+        <Card src={previewURL} alt="Searched photo" onClick={modalToggle} />
+      </Item>
+      {modal && (
+        <Modal onClose={modalToggle}>
+          <img src={modalUrl} alt="Modal large" />
+        </Modal>
+      )}
+    </>
+  );
 }
