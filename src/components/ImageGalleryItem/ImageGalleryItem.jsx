@@ -1,4 +1,4 @@
-import { Item, Img } from './ImageGalleryItem.styled';
+import { Item, Card } from './ImageGalleryItem.styled';
 import { Modal } from 'components/Modal';
 import { Component } from 'react';
 
@@ -17,7 +17,7 @@ export class GalleryItems extends Component {
     return (
       <>
         <Item>
-          <Img
+          <Card
             src={previewURL}
             alt="Searched photo"
             onClick={this.modalToggle}
@@ -25,7 +25,7 @@ export class GalleryItems extends Component {
         </Item>
         {modal && (
           <Modal onClose={this.modalToggle}>
-            <img src={modalUrl} alt="Modal new Photo" />
+            <img src={modalUrl} alt="Modal large" />
           </Modal>
         )}
       </>
